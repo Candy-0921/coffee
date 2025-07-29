@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15×20咖啡 - 专业咖啡课程</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coffee: {
+              dark: '#3A2412',
+              medium: '#6F4E37',
+              light: '#A67C52',
+              cream: '#F5EBE0',
+            },
+            primary: '#6F4E37',
+            secondary: '#A67C52',
+            neutral: {
+              100: '#F9F6F2',
+              200: '#E8E2D9',
+              800: '#333333',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+      }
+      .section-padding {
+        @apply py-12 md:py-20;
+      }
+      .btn-primary {
+        @apply bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+      }
+      .btn-secondary {
+        @apply bg-white border-2 border-primary text-primary hover:bg-primary/5 font-medium py-3 px-6 rounded-lg transition-all duration-300;
+      }
+      /* 懒加载图片占位样式 */
+      .lazy-img-placeholder {
+        background-color: #f1f1f1;
+        background-image: linear-gradient(110deg, #f5f5f5 8%, #f9f9f9 18%, #f5f5f5 33%);
+        background-size: 200% 100%;
+        animation: shine 1.5s infinite;
+      }
+      @keyframes shine {
+        to {
+          background-position-x: -200%;
+        }
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-neutral-800 bg-neutral-100">
+  <!-- 导航栏 -->
+  <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+    <nav class="bg-white/90 backdrop-blur-sm shadow-sm py-4 px-6 md:px-12">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-xl">15×20</span>
+          </div>
+          <span class="text-xl font-bold text-primary">咖啡学院</span>
+        </a>
+
+        <!-- 桌面导航 -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#courses" class="text-neutral-800 hover:text-primary transition-colors">课程介绍</a>
+          <a href="#teachers" class="text-neutral-800 hover:text-primary transition-colors">师资力量</a>
+          <a href="#environment" class="text-neutral-800 hover:text-primary transition-colors">教学环境</a>
+        </div>
+
+        <!-- 移动端菜单按钮 -->
+        <button class="md:hidden text-neutral-800" id="menuBtn">
+          <i class="fa fa-bars text-2xl"></i>
+        </button>
+      </div>
+
+      <!-- 移动端导航菜单 -->
+      <div class="md:hidden hidden bg-white absolute w-full left-0 top-full shadow-lg py-4 px-6" id="mobileMenu">
+        <div class="flex flex-col space-y-4">
+          <a href="#courses" class="text-neutral-800 hover:text-primary py-2 transition-colors">课程介绍</a>
+          <a href="#teachers" class="text-neutral-800 hover:text-primary py-2 transition-colors">师资力量</a>
+          <a href="#environment" class="text-neutral-800 hover:text-primary py-2 transition-colors">教学环境</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 英雄区 -->
+  <section
+    class="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-coffee-dark to-coffee-medium text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <!-- 首屏图片不懒加载，保证快速显示 -->
+      <img src="https://picsum.photos/id/431/1600/800" alt="咖啡背景" class="w-full h-full object-cover">
+    </div>
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 leading-tight text-shadow">专业咖啡课程 <br
+            class="hidden md:block">开启咖啡师之旅</h1>
+        <p class="text-[clamp(1rem,2vw,1.25rem)] mb-8 opacity-90">从零基础到专业咖啡师，我们提供意式咖啡、手冲、拉花和烘焙等全方位课程，助你掌握咖啡技艺。</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#courses" class="btn-primary">
+            <i class="fa fa-coffee mr-2"></i> 探索课程
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程表区域 -->
+  <section id="courses" class="section-padding bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">精选咖啡课程</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">我们提供多种咖啡课程，从基础入门到专业精通，满足不同学习需求</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- 意式咖啡课程 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <!-- 课程图片使用懒加载 -->
+            <img class="lazy-img lazy-img-placeholder w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                 data-src="意式咖啡.png"
+                 alt="意式咖啡课程">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-coffee-dark">意式咖啡课程</h3>
+              <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">3小时左右</span>
+            </div>
+            <p class="text-neutral-600 mb-4">掌握意式浓缩咖啡的制作技巧，了解意式咖啡机的操作与维护。</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学会制作冰美式，拿铁等经典意式咖啡</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>了解意式咖啡豆的选择与烘焙度对口感的影响</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学习奶泡打发技巧与温度控制</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-coffee-medium font-bold">线下实操 + 线上答疑</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 手冲咖啡课程 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img class="lazy-img lazy-img-placeholder w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                 data-src="手冲咖啡.png"
+                 alt="手冲咖啡课程">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-coffee-dark">手冲咖啡课程</h3>
+              <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">3小时左右</span>
+            </div>
+            <p class="text-neutral-600 mb-4">深入了解手冲咖啡的奥秘，掌握不同器具的冲泡方法与技巧。</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学会使用手冲器具</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>掌握水粉比、水温、注水方式对咖啡风味的影响</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>能够独立冲煮不同风味的手冲咖啡</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-coffee-medium font-bold">线下实操 + 线上答疑</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 拉花艺术课程 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img class="lazy-img lazy-img-placeholder w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                 data-src="拉花艺术.png"
+                 alt="拉花艺术课程">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-coffee-dark">拉花艺术课程</h3>
+              <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">2小时左右</span>
+            </div>
+            <p class="text-neutral-600 mb-4">从基础到进阶，掌握咖啡拉花技巧，创作出精美的咖啡图案。</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学习牛奶打发与融合技巧</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>掌握经典拉花图案</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学习创意拉花与进阶技巧</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-coffee-medium font-bold">线下实操 + 线上答疑</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 咖啡豆烘焙课程 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img class="lazy-img lazy-img-placeholder w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                 data-src="咖啡豆烘焙.png"
+                 alt="咖啡豆烘焙课程">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-coffee-dark">咖啡豆烘焙课程</h3>
+              <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">7小时左右</span>
+            </div>
+            <p class="text-neutral-600 mb-4">了解咖啡豆烘焙原理，掌握烘焙技巧，创造出独特风味的咖啡豆。</p>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学习咖啡豆的分类、产地与特性</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>掌握烘焙过程中的温度控制与时间管理</span>
+              </div>
+              <div class="flex items-start">
+                <i class="fa fa-check-circle text-coffee-light mt-1 mr-2"></i>
+                <span>学会判断烘焙程度与烘焙曲线调整</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-coffee-medium font-bold">线下实操 + 线上答疑</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程对比表格 -->
+  <section class="section-padding bg-neutral-100">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">课程对比</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">一目了然，选择最适合你的课程</p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-xl shadow-md overflow-hidden">
+          <thead>
+            <tr class="bg-coffee-medium text-white">
+              <th class="py-4 px-6 text-left">课程内容</th>
+              <th class="py-4 px-6 text-center">意式咖啡</th>
+              <th class="py-4 px-6 text-center">手冲咖啡</th>
+              <th class="py-4 px-6 text-center">拉花艺术</th>
+              <th class="py-4 px-6 text-center">咖啡豆烘焙</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-200">
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">课程时长</td>
+              <td class="py-4 px-6 text-center">3小时左右</td>
+              <td class="py-4 px-6 text-center">3小时左右</td>
+              <td class="py-4 px-6 text-center">2小时左右</td>
+              <td class="py-4 px-6 text-center">7小时左右</td>
+            </tr>
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">课程级别</td>
+              <td class="py-4 px-6 text-center">入门到进阶</td>
+              <td class="py-4 px-6 text-center">入门到进阶</td>
+              <td class="py-4 px-6 text-center">进阶</td>
+              <td class="py-4 px-6 text-center">中级到高级</td>
+            </tr>
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">课程目标</td>
+              <td class="py-4 px-6">掌握意式咖啡制作核心技巧</td>
+              <td class="py-4 px-6">学会手冲方法</td>
+              <td class="py-4 px-6">熟练掌握多种拉花图案</td>
+              <td class="py-4 px-6">独立完成咖啡豆烘焙与风味控制</td>
+            </tr>
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">包含内容</td>
+              <td class="py-4 px-6">
+                <ul class="space-y-1 text-sm">
+                  <li>• 意式咖啡机操作</li>
+                  <li>• 经典意式咖啡制作</li>
+                  <li>• 奶泡打发技巧</li>
+                </ul>
+              </td>
+              <td class="py-4 px-6">
+                <ul class="space-y-1 text-sm">
+                  <li>• 多种手冲器具使用</li>
+                  <li>• 水粉比控制</li>
+                  <li>• 风味调整技巧</li>
+                </ul>
+              </td>
+              <td class="py-4 px-6">
+                <ul class="space-y-1 text-sm">
+                  <li>• 牛奶打发技巧</li>
+                  <li>• 基础拉花图案</li>
+                  <li>• 创意拉花设计</li>
+                </ul>
+              </td>
+              <td class="py-4 px-6">
+                <ul class="space-y-1 text-sm">
+                  <li>• 咖啡豆特性分析</li>
+                  <li>• 烘焙曲线控制</li>
+                  <li>• 烘焙程度判断</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">适合人群</td>
+              <td class="py-4 px-6 text-center">咖啡爱好者、初学者</td>
+              <td class="py-4 px-6 text-center">咖啡爱好者、想深入了解咖啡风味</td>
+              <td class="py-4 px-6 text-center">咖啡爱好者、咖啡师、追求技艺提升</td>
+              <td class="py-4 px-6 text-center">咖啡爱好者、咖啡店主、专业咖啡从业者</td>
+            </tr>
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium">上课形式</td>
+              <td class="py-4 px-6 text-center">线下实操+线上答疑</td>
+              <td class="py-4 px-6 text-center">线下实操+线上答疑</td>
+              <td class="py-4 px-6 text-center">线下实操+线上答疑</td>
+              <td class="py-4 px-6 text-center">线下实操+线上答疑</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 师资力量 -->
+  <section id="teachers" class="section-padding bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">专业师资团队</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">我们的老师拥有丰富的咖啡行业经验和专业资质，致力于为学员提供高质量的教学</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 老师 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+          <div class="relative">
+            <img class="lazy-img lazy-img-placeholder w-full h-64 object-cover"
+                 data-src="专业老师.png"
+                 alt="张若兮老师">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-coffee-dark/80 to-transparent p-4">
+              <h3 class="text-xl font-bold text-white">张若兮</h3>
+              <p class="text-white/80">全程导师</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <div class="flex">
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+              </div>
+              <span class="ml-2 text-sm text-neutral-600">5.0 (123条评价)</span>
+            </div>
+            <p class="text-neutral-600 mb-4">拥有咖啡行业经验，擅长意式咖啡制作和拉花艺术教学，教学风格细致耐心。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教学环境 -->
+  <section id="environment" class="section-padding bg-neutral-100">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">专业教学环境</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">在舒适、专业的环境中学习咖啡技艺，配备先进的教学设备</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="工作室1.png"
+               alt="教学工作室">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">专业工作室</h3>
+            <p class="text-sm text-neutral-600">宽敞明亮的教学空间，配备专业咖啡设备</p>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="工作室.png"
+               alt="意式咖啡机教学区">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">意式咖啡机教学区</h3>
+            <p class="text-sm text-neutral-600">使用意式咖啡机，提供真实操作体验</p>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="手冲教学区.png"
+               alt="手冲咖啡教学区">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">手冲咖啡教学区</h3>
+            <p class="text-sm text-neutral-600">多种手冲器具供学员实践，深入了解咖啡风味</p>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="烘焙区.png"
+               alt="咖啡豆烘焙区">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">咖啡豆烘焙区</h3>
+            <p class="text-sm text-neutral-600">专业烘焙设备，让学员体验从生豆到熟豆的转变</p>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="咖啡品鉴.png"
+               alt="咖啡品鉴区">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">咖啡品鉴区</h3>
+            <p class="text-sm text-neutral-600">安静舒适的品鉴环境，培养咖啡味觉嗅觉视觉敏感度</p>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-xl shadow-md card-hover">
+          <img class="lazy-img lazy-img-placeholder w-full h-60 object-cover transition-transform duration-500 hover:scale-110"
+               data-src="休息.png"
+               alt="休息交流区">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-coffee-dark">休息交流区</h3>
+            <p class="text-sm text-neutral-600">学习之余的放松空间，与同学交流咖啡心得</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-coffee-dark text-white pt-12 pb-6">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+              <span class="text-coffee-dark font-bold text-xl">15×20</span>
+            </div>
+            <span class="text-xl font-bold">咖啡学院</span>
+          </div>
+          <p class="text-white/70 mb-4">专注咖啡教学，培养专业咖啡人才，传递咖啡文化。</p>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-coffee-medium flex items-center justify-center hover:bg-white hover:text-coffee-dark transition-colors">
+              <i class="fa fa-weixin"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-coffee-medium flex items-center justify-center hover:bg-white hover:text-coffee-dark transition-colors">
+              <i class="fa fa-weibo"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 rounded-full bg-coffee-medium flex items-center justify-center hover:bg-white hover:text-coffee-dark transition-colors">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4">课程分类</h3>
+          <ul class="space-y-2">
+            <li><a href="#courses" class="text-white/70 hover:text-white transition-colors">意式咖啡课程</a></li>
+            <li><a href="#courses" class="text-white/70 hover:text-white transition-colors">手冲咖啡课程</a></li>
+            <li><a href="#courses" class="text-white/70 hover:text-white transition-colors">拉花艺术课程</a></li>
+            <li><a href="#courses" class="text-white/70 hover:text-white transition-colors">咖啡豆烘焙课程</a></li>
+            <li><a href="#courses" class="text-white/70 hover:text-white transition-colors">青少年创业课程</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4">关于我们</h3>
+          <ul class="space-y-2">
+            <li><a href="#teachers" class="text-white/70 hover:text-white transition-colors">师资团队</a></li>
+            <li><a href="#environment" class="text-white/70 hover:text-white transition-colors">教学环境</a></li>
+            <li><a href="#" class="text-white/70 hover:text-white transition-colors">学员作品</a></li>
+            <li><a href="#" class="text-white/70 hover:text-white transition-colors">联系方式 </a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4">联系我们</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker mt-1 mr-3 text-coffee-medium"></i>
+              <span class="text-white/70">北京市朝阳区望京站</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-phone mr-3 text-coffee-medium"></i>
+              <span class="text-white/70">微信号：weiwei22083</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-envelope mr-3 text-coffee-medium"></i>
+              <span class="text-white/70">info@15x20coffee.com</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-clock-o mr-3 text-coffee-medium"></i>
+              <span class="text-white/70">周一至周日 10:00-18:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-6">
+        <p class="text-center text-white/50 text-sm">© 2025 15×20咖啡学院 版权所有 | 京备12345678号</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部按钮 -->
+  <button id="backToTop"
+    class="fixed bottom-6 right-6 w-12 h-12 bg-coffee-medium rounded-full flex items-center justify-center text-white shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-md');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-md');
+        navbar.classList.add('bg-transparent');
+      }
+    });
+
+    // 移动端菜单
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+
+          // 关闭移动端菜单
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // 回到顶部按钮
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+        backToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+        backToTopBtn.classList.remove('opacity-100', 'visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // 图片懒加载实现
+    document.addEventListener('DOMContentLoaded', function() {
+      // 检测浏览器是否原生支持IntersectionObserver
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const image = entry.target;
+              // 将data-src的值赋给src，触发图片加载
+              image.src = image.dataset.src;
+              // 加载完成后移除占位样式
+              image.classList.remove('lazy-img-placeholder');
+              // 停止观察该图片
+              observer.unobserve(image);
+            }
+          });
+        });
+
+        // 获取所有需要懒加载的图片并进行观察
+        document.querySelectorAll('.lazy-img').forEach(image => {
+          imageObserver.observe(image);
+        });
+      } else {
+        // 降级处理：不支持IntersectionObserver时直接加载所有图片
+        document.querySelectorAll('.lazy-img').forEach(image => {
+          image.src = image.dataset.src;
+          image.classList.remove('lazy-img-placeholder');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
