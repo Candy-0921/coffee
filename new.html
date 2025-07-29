@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>00后咖啡创业营 - 开启咖啡创业之旅</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Tailwind 基础配置（可根据需求调整） -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coffee: {
+              dark: '#3A2412',
+              medium: '#6F4E37',
+              light: '#A67C52',
+              cream: '#F5EBE0',
+            },
+            primary: '#6F4E37',
+            secondary: '#A67C52',
+            neutral: {
+              100: '#F9F6F2',
+              200: '#E8E2D9',
+              800: '#333333',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+      }
+      .section-padding {
+        @apply py-12 md:py-20;
+      }
+      .btn-primary {
+        @apply bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-neutral-800 bg-neutral-100">
+  <!-- 导航栏（简化版，适配创业营主题） -->
+  <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <nav class="py-4 px-6 md:px-12">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-xl">15×20</span>
+          </div>
+          <span class="text-xl font-bold text-primary">咖啡创业营</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 英雄区：突出00后创业特色 -->
+  <section class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-coffee-dark to-coffee-medium text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <img src="00后.png" alt="创业咖啡场景" class="w-full h-full object-cover">
+    </div>
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 leading-tight text-shadow">00后咖啡创业营</h1>
+        <p class="text-[clamp(1rem,2vw,1.25rem)] mb-8 opacity-90">专为00后打造的咖啡创业加速计划！从产品、运营到营销，手把手教你开一家赚钱的咖啡店/咖啡小馆，用咖啡点燃创业梦！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 创业营亮点：用数据/优势吸引 -->
+  <section class="section-padding bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">为什么选我们的创业营？</h2>
+        <p class="text-lg text-neutral-600 max-w-3xl mx-auto">专为00后定制，贴合年轻人创业节奏与思维，解决“没经验、没资源、不知从哪开始”的痛点！</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center card-hover">
+          <i class="fa fa-lightbulb-o text-4xl text-coffee-medium mb-4"></i>
+          <h3 class="text-lg font-bold text-coffee-dark mb-2">轻资产模式</h3>
+          <p class="text-sm text-neutral-600 text-center">教你用 <span class="font-bold">3-5万元</span> 启动资金，打造低成本高回报的咖啡创业项目</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center card-hover">
+          <i class="fa fa-users text-4xl text-coffee-medium mb-4"></i>
+          <h3 class="text-lg font-bold text-coffee-dark mb-2">00后社群资源</h3>
+          <p class="text-sm text-neutral-600 text-center">加入创业营，连接 <span class="font-bold">100+</span> 同龄创业者，共享资源、互相赋能</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center card-hover">
+          <i class="fa fa-line-chart text-4xl text-coffee-medium mb-4"></i>
+          <h3 class="text-lg font-bold text-coffee-dark mb-2">实战化教学</h3>
+          <p class="text-sm text-neutral-600 text-center">拒绝纸上谈兵！<span class="font-bold">7天</span> 掌握从选品到营销的完整闭环</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center card-hover">
+          <i class="fa fa-shield text-4xl text-coffee-medium mb-4"></i>
+          <h3 class="text-lg font-bold text-coffee-dark mb-2">终身校友权益</h3>
+          <p class="text-sm text-neutral-600 text-center">毕业后持续对接供应链、流量扶持，一路陪跑你的创业路</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 课程体系：分阶段拆解 -->
+  <section class="section-padding bg-neutral-100">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-coffee-dark mb-4">创业营课程大纲</h2>
+        <p class="text-lg text-neutral-600 max-w-3xl mx-auto">7天密集训练 + 30天陪跑，从“咖啡小白”到“创业摊主/店主”</p>
+      </div>
+
+      <div class="space-y-8">
+        <!-- 阶段1 -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-coffee-dark">Day1-2：项目起盘 - 选赛道、定模式</h3>
+            <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">基础必备</span>
+          </div>
+          <ul class="space-y-2 text-neutral-600 list-disc pl-6">
+            <li>咖啡创业趋势：00后喜欢的咖啡形态（社区店、移动咖啡车、线上订阅等）</li>
+            <li>成本测算：3万/5万/10万预算怎么分配（设备、原料、房租、营销…）</li>
+            <li>模式验证：用“最小可行性产品（MVP）”测试市场需求</li>
+          </ul>
+        </div>
+        <!-- 阶段2 -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-coffee-dark">Day3-4：产品打磨 - 咖啡+创意</h3>
+            <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">核心技能</span>
+          </div>
+          <ul class="space-y-2 text-neutral-600 list-disc pl-6">
+            <li>爆款产品设计：00后专属咖啡配方（水果咖啡、国潮特调等）</li>
+            <li>差异化体验：如何用“场景+情绪”让顾客复购（打卡点、社交属性）</li>
+            <li>供应链管理：咖啡豆/原料采购渠道、库存优化技巧</li>
+          </ul>
+        </div>
+        <!-- 阶段3 -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-coffee-dark">Day5-6：流量突围 - 线上+线下营销</h3>
+            <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">获客关键</span>
+          </div>
+          <ul class="space-y-2 text-neutral-600 list-disc pl-6">
+            <li>线上引流：抖音/小红书/朋友圈的咖啡创业IP打造（脚本、拍摄、运营）</li>
+            <li>线下获客：社区渗透、快闪活动、异业合作玩法</li>
+            <li>私域运营：如何用“咖啡社群”沉淀用户，实现复购+裂变</li>
+          </ul>
+        </div>
+        <!-- 阶段4 -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-coffee-dark">Day7+30天：陪跑实战</h3>
+            <span class="bg-coffee-cream text-coffee-medium px-3 py-1 rounded-full text-sm font-medium">持续赋能</span>
+          </div>
+          <ul class="space-y-2 text-neutral-600 list-disc pl-6">
+            <li>一对一问诊：你的创业方案，导师团队帮你优化落地</li>
+            <li>资源对接会：供应链、设备厂商、场地资源开放对接</li>
+            <li>月度复盘：跟踪你的创业数据，调整策略、解决问题</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 页脚：简化版 -->
+  <footer class="bg-coffee-dark text-white pt-8 pb-4">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-white/70 text-sm mb-4 md:mb-0">© 2025 15×20咖啡创业营 版权所有</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-white/70 hover:text-white transition-colors">咨询入口</a>
+          <a href="#" class="text-white/70 hover:text-white transition-colors">常见问题</a>
+          <a href="#" class="text-white/70 hover:text-white transition-colors">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部按钮 -->
+  <button id="backToTop"
+    class="fixed bottom-6 right-6 w-12 h-12 bg-coffee-medium rounded-full flex items-center justify-center text-white shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript 交互逻辑 -->
+  <script>
+    // 导航栏滚动效果（保持简洁，适配创业营风格）
+    const navbar = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-md');
+      } else {
+        navbar.classList.remove('shadow-md');
+      }
+    });
+
+    // 回到顶部按钮
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    });
+  </script>
+</body>
+
+</html>
